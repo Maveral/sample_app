@@ -1,18 +1,29 @@
 # == Schema Information
-# Schema version: 20110225105544
+# Schema version: 20110301140612
 #
 # Table name: users
 #
-#  id         :integer(4)      not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                 :integer(4)      not null, primary key
+#  name               :string(255)
+#  email              :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#  admin              :boolean(1)
 #
 
 class User < ActiveRecord::Base
 	attr_accessor :password
 	attr_accessible :name, :email, :password, :password_confirmation
+	
+	# Ustawienia paginacji
+	
+	cattr_reader :per_page
+  
+    @@per_page = 10
+    
+    #Koniec ustawien paginacji
 	
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
