@@ -8,3 +8,8 @@ end
 Factory.sequence :email do |n|
   "person-#{n}@wp.pl"
 end
+
+Factory.define :micropost do |micropost|
+  micropost.content "To jest tekst"
+  micropost.association :user
+end
